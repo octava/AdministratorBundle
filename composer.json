@@ -1,6 +1,6 @@
 {
     "name": "octava/administrator",
-    "description": "Admin user administration",
+    "description": "User administration",
     "type": "library",
     "license": "MIT",
     "authors": [
