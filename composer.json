@@ -26,7 +26,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Octava\\Bundle\\AdministratorBundle\\": ""
+            "Octava\\Bundle\\AdministratorBundle\\": "src/Octava/Bundle/AdministratorBundle/"
         }
     }
 }
