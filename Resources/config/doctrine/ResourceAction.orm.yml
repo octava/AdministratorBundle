@@ -1,0 +1,34 @@
+Octava\Bundle\AdministratorBundle\Entity\ResourceAction:
+    type: entity
+    table: octava_administrator_action
+    option:
+        comment: 'List of resource action'
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    fields:
+        action:
+            type: string
+            options:
+                comment: 'Action name'
+
+        sortingOrder:
+            type: integer
+            nullable: true
+            options:
+                comment: 'Sorting order to display resource actions'
+
+    manyToOne:
+        resource:
+            targetEntity: Resource
+            joinColumn:
+                name: resource_id
+                referencedColumnName: id
+                onDelete: CASCADE
+
+    uniqueConstraints:
+        resource_id_action_idx:
+            columns: [resource_id, action]

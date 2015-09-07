@@ -1,0 +1,92 @@
+Octava\Bundle\AdministratorBundle\Entity\User:
+    type: entity
+    table: octava_administrator_user
+    repositoryClass: UserRepository
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    fields:
+        username:
+            type: string
+            unique: true
+
+        password:
+            type: string
+            length: 32
+
+        salt:
+            type: string
+            length: 32
+
+        name:
+            type: string
+            nullable: true
+
+
+        email:
+            type: string
+            nullable: true
+
+
+        enabled:
+            type: boolean
+            nullable: true
+
+        superadmin:
+            type: boolean
+            nullable: true
+
+        createdAt:
+            type: datetime
+
+        updatedAt:
+            type: datetime
+
+        lastLoginAt:
+            type: datetime
+            nullable: true
+
+        comment:
+            type: text
+            nullable: true
+
+        image:
+            type: json_array
+            nullable: true
+
+
+    manyToMany:
+        groups:
+            targetEntity: Group
+            joinTable:
+                name: octava_administrator_users_groups
+                joinColumns:
+                    user_id:
+                        referencedColumnName: id
+                        onDelete: cascade
+                inverseJoinColumns:
+                    group_id:
+                        referencedColumnName: id
+                        onDelete: cascade
+
+        resourceActions:
+            targetEntity: ResourceAction
+            inversedBy: users
+            joinTable:
+                name: octava_administrator_users_resource_actions
+                joinColumns:
+                    resource_action_id:
+                        referencedColumnName: id
+                        onDelete: cascade
+                inverseJoinColumns:
+                    user_id:
+                        referencedColumnName: id
+                        onDelete: cascade
+
+
+    lifecycleCallbacks:
+        prePersist: [ prePersist ]
+        preUpdate: [ preUpdate ]

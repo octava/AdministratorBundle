@@ -1,0 +1,44 @@
+Octava\Bundle\AdministratorBundle\Entity\Resource:
+    type: entity
+    table: octava_administrator_resource
+    option:
+        comment: 'List of admin class'
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    fields:
+        resource:
+            type: string
+            unique: true
+            options:
+                comment: 'Admin class name'
+
+        label:
+            type: string
+            options:
+                comment: 'Resource label'
+
+        groupLabel:
+            type: string
+            options:
+                comment: 'Resource group label'
+
+        translationDomain:
+            type: string
+            options:
+                comment: 'Translation domain for label'
+
+        labelCatalogue:
+            type: string
+            options:
+                comment: 'Label catalogue from tag'
+
+    oneToMany:
+        actions:
+            targetEntity: ResourceAction
+            mappedBy: resource
+            orderBy:
+                sortingOrder: ASC

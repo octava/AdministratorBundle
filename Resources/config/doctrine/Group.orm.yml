@@ -1,0 +1,28 @@
+Octava\Bundle\AdministratorBundle\Entity\Group:
+    type: entity
+    table: octava_administrator_group
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    fields:
+        name:
+            type: string
+
+    manyToMany:
+        resourceActions:
+            targetEntity: ResourceAction
+            inversedBy: groups
+            joinTable:
+                name: octava_administrator_groups_resource_actions
+                joinColumns:
+                    resource_action_id:
+                        referencedColumnName: id
+                        onDelete: cascade
+                inverseJoinColumns:
+                    group_id:
+                        referencedColumnName: id
+                        onDelete: cascade
+
